@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Autofill Helper",
+  "version": "1.0.0",
+  "description": "Autofills the current page with short English sample data based on field meaning and requirements.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_title": "Smart Autofill Helper",
+    "default_popup": "popup.html"
+  }
+}
