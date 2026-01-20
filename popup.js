@@ -7,7 +7,7 @@ function setStatus(message, isError = false) {
 }
 
 async function fillCurrentTab() {
-  setStatus("Preparing tab...");
+  setStatus("Filling fields...");
 
   try {
     const [tab] = await chrome.tabs.query({
@@ -20,7 +20,13 @@ async function fillCurrentTab() {
       return;
     }
 
-    setStatus("Autofill script will run here soon.");
+    const [result] = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ["fill.js"]
+    });
+
+    const message = result?.result?.message ?? "Autofill completed.";
+    setStatus(message);
   } catch (error) {
     setStatus(error.message || "Unable to access this tab.", true);
   }
