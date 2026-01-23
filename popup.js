@@ -28,7 +28,7 @@ async function fillCurrentTab() {
     const message = result?.result?.message ?? "Autofill completed.";
     setStatus(message);
   } catch (error) {
-    setStatus(error.message || "Unable to access this tab.", true);
+    setStatus(error.message || "Unable to fill this page.", true);
   }
 }
 
