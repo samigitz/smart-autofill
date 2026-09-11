@@ -3,14 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Autofill Helper</title>
+  <title>Formmate</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <main class="popup">
-    <h1>Smart Autofill</h1>
-    <p>Fill the current page with related English sample values.</p>
-    <button id="fillButton" type="button">Fill Current Page</button>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand-mark"><img src="icons/icon.svg" alt=""></div>
+      <div>
+        <p class="eyebrow">AUTO FILLER</p>
+        <h1>Formmate</h1>
+      </div>
+      <button id="refreshButton" class="icon-button" type="button" title="Refresh page scan" aria-label="Refresh page scan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.7-4L3 9m0-5v5h5M4 13a8 8 0 0 0 14.7 4L21 15m0 5v-5h-5"/></svg></button>
+    </header>
+
+    <section class="site-strip" aria-label="Current website">
+      <span class="site-dot" aria-hidden="true"></span>
+      <span id="siteName">Current page</span>
+      <span id="fieldCount" class="site-meta">Scanning…</span>
+    </section>
+
+    <nav class="tabs" aria-label="Formmate sections">
+      <button class="tab is-active" type="button" data-tab="fill">Fill</button>
+      <button class="tab" type="button" data-tab="saved">Saved <span id="profileCount" class="tab-count">0</span></button>
+      <button class="tab" type="button" data-tab="clipboard">Copy / Paste</button>
+    </nav>
+
+    <section id="fillPanel" class="panel" data-panel="fill">
+      <div class="intro-copy">
+        <h2>Fill me now.</h2>
+        <p>Smart test data, matched to each field.</p>
+      </div>
+
+      <div class="scan-card">
+        <div class="scan-card-topline">
+          <span class="status-pulse" aria-hidden="true"></span>
+          <span id="scanStatus">Ready to scan</span>
+        </div>
+        <div class="field-preview" id="fieldPreview" aria-label="Detected fields"></div>
+      </div>
+
+      <button id="fillButton" class="primary-button" type="button"><span>Fill empty fields</span><span aria-hidden="true">→</span></button>
+      <button id="clearButton" class="text-button" type="button">Clear values I filled</button>
+
+      <div class="tip-row">
+        <span class="tip-icon" aria-hidden="true">i</span>
+        <p>Existing values are left untouched. Nothing leaves this browser.</p>
+      </div>
+    </section>
+
+    <section id="savedPanel" class="panel is-hidden" data-panel="saved">
+      <div class="panel-heading"><div><h2>Reusable profiles</h2><p>Saved for this site.</p></div></div>
+      <form id="profileForm" class="profile-form">
+        <label for="profileName">Save this page as</label>
+        <div class="inline-form"><input id="profileName" name="profileName" type="text" maxlength="40" placeholder="e.g. Checkout test" required><button class="small-button" type="submit">Save</button></div>
+      </form>
+      <div id="profileList" class="profile-list"></div>
+    </section>
+
+    <section id="clipboardPanel" class="panel is-hidden" data-panel="clipboard">
+      <div class="intro-copy"><h2>Move form data.</h2><p>Copy once, paste anywhere.</p></div>
+      <button id="copyButton" class="action-row" type="button"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg></span><span><strong>Copy all form data</strong><small>Save a local snapshot</small></span><span aria-hidden="true">→</span></button>
+      <button id="pasteButton" class="action-row" type="button"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7h8M9 4h6l1 3H8l1-3Z"/><rect x="5" y="7" width="14" height="14" rx="2"/><path d="m9 14 2 2 4-4"/></svg></span><span><strong>Paste copied data</strong><small>Match it to this form</small></span><span aria-hidden="true">→</span></button>
+      <button id="clearClipboardButton" class="danger-row" type="button">Clear copied data</button>
+      <div class="privacy-note"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.5 3.2 7.6 8 9 4.8-1.4 8-4.5 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg></span><p>Local only. Use test data for sensitive forms.</p></div>
+    </section>
+
+    <footer class="app-footer"><span>FORMMATE / 01</span><span>Ctrl + Shift + Y to fill</span></footer>
     <p id="status" class="status" aria-live="polite"></p>
   </main>
   <script src="popup.js"></script>

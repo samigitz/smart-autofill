@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formmate Test Scenarios</title>
+  <style>
+    body { max-width: 720px; margin: 40px auto; padding: 0 20px; font: 16px/1.5 system-ui, sans-serif; color: #1b262b; background: #f4f4ef; }
+    form { display: grid; gap: 16px; padding: 24px; border-radius: 14px; background: white; box-shadow: 0 12px 30px #1b262b12; }
+    fieldset { display: grid; gap: 10px; border: 1px solid #d7dfdb; border-radius: 10px; padding: 16px; }
+    label { display: grid; gap: 6px; font-weight: 700; }
+    input, textarea, select { padding: 10px; border: 1px solid #cbd5d0; border-radius: 7px; font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>Checkout test form</h1>
+  <p>Use this local page to try names, contact details, delivery data, requirements, and saved profiles.</p>
+  <form>
+    <fieldset><legend>Contact</legend>
+      <label>First name <input name="firstName" autocomplete="given-name" required></label>
+      <label>Last name <input name="lastName" autocomplete="family-name" required></label>
+      <label>Email <input type="email" name="email" required></label>
+      <label>Phone <input type="tel" name="phone"></label>
+    </fieldset>
+    <fieldset><legend>Delivery</legend>
+      <label>Address <input name="address" required></label>
+      <label>City <input name="city" required></label>
+      <label>Country <select name="country"><option value="">Choose a country</option><option>United Kingdom</option><option>Canada</option></select></label>
+      <label>Postcode <input name="postcode" minlength="5" maxlength="8"></label>
+    </fieldset>
+    <label>Order notes <textarea name="notes" maxlength="120"></textarea></label>
+    <label><input type="checkbox" name="terms" required> I agree to the test terms</label>
+  </form>
+</body>
+</html>
