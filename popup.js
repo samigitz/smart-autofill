@@ -50,8 +50,8 @@ function renderFieldPreview(fields) {
   }
 }
 
-async function scanPage() {
-  setStatus("");
+async function scanPage(clearStatus = true) {
+  if (clearStatus) setStatus("");
   fieldCountElement.textContent = "Scanning…";
   scanStatusElement.textContent = "Looking for fillable fields";
   try {
@@ -70,20 +70,26 @@ async function scanPage() {
 
 async function fillPage() {
   setStatus("Filling empty fields…");
+  const button = document.getElementById("fillButton");
+  button.disabled = true;
   try {
     const result = await runPageAction("fill");
+    await scanPage(false);
     setStatus(result?.message || "Autofill completed.");
-    await scanPage();
   } catch (error) { setStatus(error.message || "Unable to fill this page.", true); }
+  finally { button.disabled = false; }
 }
 
 async function clearPage() {
   setStatus("Clearing values added by Formmate…");
+  const button = document.getElementById("clearButton");
+  button.disabled = true;
   try {
     const result = await runPageAction("clear");
+    await scanPage(false);
     setStatus(result?.message || "Cleared Formmate values.");
-    await scanPage();
   } catch (error) { setStatus(error.message || "Unable to clear this page.", true); }
+  finally { button.disabled = false; }
 }
 
 async function saveProfile(event) {

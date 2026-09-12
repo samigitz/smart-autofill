@@ -47,6 +47,7 @@ h1 { font-size: 18px; letter-spacing: -0.04em; }
 .primary-button { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 13px 14px; border: 0; border-radius: 9px; background: var(--accent); color: white; font-weight: 800; box-shadow: 0 8px 16px rgba(239, 105, 78, 0.22); transition: background 180ms ease, transform 180ms ease; }
 .primary-button:hover { background: var(--accent-dark); transform: translateY(-1px); }
 .primary-button:active { transform: translateY(0); }
+.primary-button:disabled { cursor: wait; opacity: 0.65; transform: none; }
 .text-button { display: block; margin: 11px auto 0; border: 0; background: transparent; color: var(--muted); font-size: 11px; text-decoration: underline; text-underline-offset: 3px; }
 .text-button:hover { color: var(--ink); }
 .tip-row { gap: 8px; margin-top: 15px; padding: 8px 0; border-top: 1px solid var(--line); color: var(--muted); }
@@ -59,6 +60,7 @@ h1 { font-size: 18px; letter-spacing: -0.04em; }
 .inline-form input { min-width: 0; flex: 1; padding: 10px; border: 1px solid var(--line); border-radius: 7px; outline: none; background: #fbfbf9; }
 .inline-form input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(239, 105, 78, 0.14); }
 .small-button { padding: 0 13px; border: 0; border-radius: 7px; background: var(--ink); color: white; font-weight: 800; }
+.small-button:disabled { cursor: wait; opacity: 0.6; }
 .profile-list { display: grid; gap: 8px; max-height: 230px; margin-top: 14px; overflow: auto; }
 .profile-item { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 11px; border-bottom: 1px solid var(--line); }
 .profile-item strong { display: block; font-size: 12px; }
